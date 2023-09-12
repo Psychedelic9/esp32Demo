@@ -101,11 +101,11 @@ uint8_t *buildStatusCode()
   int headHeight = random(0, 880);
   byteArray[16] = headHeight & 0xff;
   byteArray[17] = (headHeight >> 8) & 0xff;
-  // 添加校验，把byteArray[1]到byteArray[17]的所有字节相加，取最后2位，比如如果相加结果是0x1234，那么校验结果就是0x34
+  // 添加校验，把byteArray[0]到byteArray[17]的所有字节相加，取最后2位，比如如果相加结果是0x1234，那么校验结果就是0x34
   Serial.println("buildStatusCode check");
 
   int sum = 0;
-  for (int i = 1; i < 18; i++)
+  for (int i = 0; i < 18; i++)
   {
     sum += byteArray[i];
   }
